@@ -18,11 +18,12 @@ def tambah_produk():
     nama = input("Masukkan nama produk baru: ")
     harga = int(input("Masukkan harga per kg produk baru: "))
     
-    for item in produk:
-        if produk:
-            max_id = max(item['id'])
-        else:
-            max_id = 0
+    if produk:
+        max_id = produk[0]['id']
+        for item in produk:
+            max_id = max(max_id, item['id'])
+    else:
+        max_id = 0
 
     id = max_id + 1
     produk.append({"id": id, "nama_produk": nama, "harga": harga})
@@ -137,7 +138,6 @@ def delete_keranjang():
 if __name__ == "__main__":
     while True:
         tampil_produk()
-        
         print("\nProgram Kasir Sederhana")
         print("1. Tambah Produk")
         print("2. Update Produk")
